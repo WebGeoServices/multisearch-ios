@@ -1,0 +1,2 @@
+#!/bin/bash 
+swift doc generate ./Multisearch -o ./documentation -n Woosmap.Multisearch
