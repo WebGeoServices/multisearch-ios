@@ -8,13 +8,16 @@ Pod::Spec.new do |s|
   s.source = { :git => 'https://github.com/WebGeoServices/multisearch-ios.git', :tag => s.version }
   s.documentation_url = 'https://github.com/WebGeoServices/multisearch-ios'
 
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '10.0'
 
   s.swift_versions = ['5.1', '5.2']
-  s.source_files = 'Multisearch/*.swift', 'Multisearch/FuseJS/*.swift',Multisearch/Network/*.swift,Multisearch/Network/*.swift,
+  s.source_files = [
+  	'Multisearch/*.swift', 
+  	'Multisearch/FuseJS/*.swift',
+  	'Multisearch/Network/*.swift',
+  	'Multisearch/Network/Models/*.swift',
+  	'Multisearch/ProviderConfig/*.swift',
+  	'Multisearch/Providers/*.swift',
+  	]
  
 end
-
-
-48,8385379
-2,3785842
