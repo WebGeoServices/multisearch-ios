@@ -16,33 +16,40 @@ By comparing the user input to the returned results and computing a string match
 
 ### Installation
 ---
-> **Please Note:** These steps will change based on deployment strategy of the library
+You can install the SDK in four different ways.
 
+> **Note**
+> 
+> We recommend installing the SDK via [Swift Package Manager](https://swift.org/package-manager/).
 
-**Importing the library using COCOAPOD repo**
+### Swift Package Manager
 
-Add the framework to your POD file
+To integrate Woosmap Geofencing SDK into your project using [Swift Package Manager](https://swift.org/package-manager/),
+you can add the library as a dependency in Xcode (11 and above) –
+see [adding package dependencies to your app](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)
+on Apple documentation. The package repository URL is:
 
 ```
-target 'SampleApp' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for SampleApp
-  pod 'MultiSearch',:git => 'https://github.com/wgs/multisearch.git' //URL to Webgeoservice's repo
-end
-```
-Add the Woosmap Multisearch dependency to project
-```
-POD install
+https://github.com/WebGeoServices/multisearch-ios
 ```
 
-**Importing the Framework manually**
+### CocoaPods
+
+Install [CocoaPods](https://cocoapods.org), a dependency manager for Cocoa projects. If you don't have an existing Podfile, run pod init in your project directory. Add the following to your Podfile:
+ For usage and installation instructions, visit their website. To integrate Woosmap Geofencing SDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```
+pod 'WoosmapMultiSearch', :git => 'https://github.com/WebGeoServices/multisearch-ios'
+```
+
+### Importing the Framework manually
 
 1. Unzip MultiSearch-\<version\>.zip.
 2. Import the MultiSearch.framework folder into your Xcode project.
 
-> **Please Note:** If Xcode has not automatically added the correct path(s), add a project-relative path to your framework.
+> **Note**
+> 
+> If Xcode has not automatically added the correct path(s), add a project-relative path to your framework.
 
 ### The `MultiSearch` Object
 
