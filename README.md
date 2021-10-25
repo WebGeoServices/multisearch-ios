@@ -22,7 +22,7 @@ Install [CocoaPods](https://cocoapods.org), a dependency manager for Cocoa proje
  For usage and installation instructions, visit their website. To integrate Woosmap Geofencing SDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```
-pod 'WoosmapGeofencing', :git => 'https://github.com/woosmap/woosmap-geofencing-ios-sdk.git'
+pod 'WoosmapMultiSearch', :git => 'https://github.com/WebGeoServices/multisearch-ios'
 ```
 
 ### Importing the Framework manually
