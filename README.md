@@ -1,3 +1,31 @@
+## Install SDK
+
+You can install the SDK in four different ways.
+
+{:.info}
+We recommend installing the SDK via [Swift Package Manager](https://swift.org/package-manager/).
+
+### Swift Package Manager
+
+To integrate Woosmap Geofencing SDK into your project using [Swift Package Manager](https://swift.org/package-manager/),
+you can add the library as a dependency in Xcode (11 and above) –
+see [adding package dependencies to your app](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)
+on Apple documentation. The package repository URL is:
+
+```
+https://github.com/WebGeoServices/multisearch-ios
+```
+
+### CocoaPods
+
+Install [CocoaPods](https://cocoapods.org), a dependency manager for Cocoa projects. If you don't have an existing Podfile, run pod init in your project directory. Add the following to your Podfile:
+ For usage and installation instructions, visit their website. To integrate Woosmap Geofencing SDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```
+pod 'WoosmapMultiSearch', :git => 'https://github.com/WebGeoServices/multisearch-ios'
+```
+
+
 # wgs-multisearch-ios
 
 Uses:
