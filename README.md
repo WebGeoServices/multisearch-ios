@@ -18,20 +18,11 @@ https://github.com/WebGeoServices/multisearch-ios
 
 ### CocoaPods
 
-Add the framework to your POD file
+Install [CocoaPods](https://cocoapods.org), a dependency manager for Cocoa projects. If you don't have an existing Podfile, run pod init in your project directory. Add the following to your Podfile:
+ For usage and installation instructions, visit their website. To integrate Woosmap Geofencing SDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```
-target 'SampleApp' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for SampleApp
-  pod 'MultiSearch',:git => 'https://github.com/WebGeoServices/multisearch-ios'
-end
-```
-Add the Woosmap Multisearch dependency to project
-```
-POD install
+pod 'WoosmapGeofencing', :git => 'https://github.com/woosmap/woosmap-geofencing-ios-sdk.git'
 ```
 
 ### Importing the Framework manually
