@@ -42,7 +42,7 @@ class AddressProvider: AbstractProvider {
     ///   - completionBlock: Callback function, Returning DetailsResponseItem and Api error if any
     func details(_ placeid: String, completionBlock: @escaping (DetailsResponseItem?, APIClient.Error?) -> Void) {
         var searchQuery = self.getQueryParam()
-        searchQuery.append(URLQueryItem.init(name: "address", value: placeid.fromBase64()))
+        searchQuery.append(URLQueryItem.init(name: "public_id", value: placeid))
         apiclient.searchAddressDetail(searchQuery) { (result, errors) in
             completionBlock(result, errors)
         }
