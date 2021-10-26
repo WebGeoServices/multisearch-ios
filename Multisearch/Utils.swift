@@ -52,6 +52,9 @@ internal class Utils {
             if let extended = param.extended {
                 urlQuery.append(URLQueryItem.init(name: "extended", value: extended))
             }
+            if let fields = param.fields {
+                urlQuery.append(URLQueryItem.init(name: "fields", value: fields))
+            }
         }
 
         return urlQuery
