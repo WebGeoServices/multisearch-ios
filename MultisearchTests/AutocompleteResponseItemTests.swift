@@ -141,8 +141,7 @@ class AutocompleteResponseItemTests: XCTestCase {
                     "types": ["type1", "type2"],
                     "matched_substring": ["description": [["length": Int64(2),
                                                             "offset": Int64(1)],
-                                                         ["length": Int64(3),
-                                                          "offset": Int64(10)]]]])
+                                                         ]]])
 
         // then
         XCTAssertEqual(testObject.description, "Test AutocompleteResponseItem")

@@ -38,7 +38,7 @@ class Multisearch_IndexTests: XCTestCase {
         storeProvider = ProviderConfig(searchType: .store,
                                             key: FakeTestData.woosmapKey,
                                             fallbackBreakpoint: 0,
-                                            param: ConfigParam(query: "type:bose_factory_store"))
+                                            param: ConfigParam(query: "type:type1"))
 
         placesProvider = ProviderConfig(searchType: .places,
                                              key: FakeTestData.placesKey,
@@ -122,7 +122,7 @@ class Multisearch_IndexTests: XCTestCase {
 
         // then
         XCTAssertNil(responseError, "error")
-        XCTAssertEqual(5, responseResult?.count, "Matching record counts")
+        XCTAssertEqual(3, responseResult?.count, "Matching record counts")
         XCTAssertEqual("Parise, Burolo, Piemonte, Italia", responseResult?.first?.description, "Matching Details of result")
         responseResult?.forEach({ (response) in
             XCTAssertNotNil(response.matchedSubstrings)
@@ -137,7 +137,7 @@ class Multisearch_IndexTests: XCTestCase {
 
         let promise = expectation(description: "Should return result ")
         // when
-        testObject.autocompleteStore(input: "store") { (result, error) in
+        testObject.autocompleteStore(input: "vista") { (result, error) in
             responseResult = result
             responseError = error
             promise.fulfill()
@@ -148,7 +148,7 @@ class Multisearch_IndexTests: XCTestCase {
         // then
         XCTAssertNil(responseError, "error")
         XCTAssertEqual(1, responseResult?.count, "Matching record counts")
-        XCTAssertEqual("Woodburn Company Stores", responseResult?.first?.description, "Matching Details of result")
+        XCTAssertEqual("Vista & Foothill, Vista", responseResult?.first?.description, "Matching Details of result")
     }
 
     // MARK: - Detail test
@@ -221,7 +221,7 @@ class Multisearch_IndexTests: XCTestCase {
 
         let promise = expectation(description: "Should return result ")
         // when
-        testObject.details(id: "VmlhIERvbWl0aWFuYSwgODAwNzggUG96enVvbGkgTkEsIEl0YWxpYQ==", provider: .address) { (result, error) in
+        testObject.details(id: "aGVyZTphZjpzdHJlZXQ6WVlhYnBWdEtON3RnSmx2YzlOdEZ0Qw==", provider: .address) { (result, error) in
             responseResult = result
             responseError = error
             promise.fulfill()
@@ -261,7 +261,7 @@ class Multisearch_IndexTests: XCTestCase {
 
         let promise = expectation(description: "Should return result ")
         // when
-        testObject.details(id: "8ad198b442c766280142c76629be00a5", provider: .store) { (result, error) in
+        testObject.details(id: "10008_98261", provider: .store) { (result, error) in
             responseResult = result
             responseError = error
             promise.fulfill()
@@ -270,7 +270,7 @@ class Multisearch_IndexTests: XCTestCase {
 
         // then
         XCTAssertNil(responseError)
-        XCTAssertEqual("1001   Arney Road    Woodburn  97071 Oregon", responseResult?.formattedAddress)
+        XCTAssertEqual("1385 East Vista Way", responseResult?.formattedAddress)
         XCTAssertEqual(.store, responseResult?.api)
         XCTAssertNotNil(responseResult?.addressComponents, "Address component is missing")
     }
@@ -355,7 +355,7 @@ class Multisearch_IndexTests: XCTestCase {
 
         // then
         XCTAssertNil(responseError, "function should not return errors")
-        XCTAssertEqual(7, responseResult?.count, "No Matching record counts")
+        XCTAssertEqual(10, responseResult?.count, "No Matching record counts")
         XCTAssertEqual("Pó, Leiria, Portugal", responseResult?.first?.description, "No Matching Details of result")
 
         let recordLocalities = responseResult?.firstIndex(where: { (item) -> Bool in

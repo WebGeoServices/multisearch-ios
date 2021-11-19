@@ -38,8 +38,8 @@ class StoreProviderTests: XCTestCase {
 
         // then
         XCTAssertNil(responseError, "error")
-        XCTAssertEqual(3, responseResult?.count, "Matching record counts")
-        XCTAssertEqual("Woodburn Company Stores", responseResult?.first?.description, "Matching Details of result")
+        XCTAssertEqual(5, responseResult?.count, "Matching record counts")
+        XCTAssertEqual("Frys Store #674", responseResult?.first?.description, "Matching Details of result")
     }
 
     func testDetail() throws {
@@ -50,7 +50,7 @@ class StoreProviderTests: XCTestCase {
 
         let promise = expectation(description: "Should return result ")
         // when
-        testObject.details("8ad198b442c766280142c76629be00a5") { (result, error) in
+        testObject.details("22018_214825") { (result, error) in
             responseResult = result
             responseError = error
             promise.fulfill()
@@ -59,7 +59,7 @@ class StoreProviderTests: XCTestCase {
 
         // then
         XCTAssertNil(responseError)
-        XCTAssertEqual("1001   Arney Road    Woodburn  97071 Oregon", responseResult?.formattedAddress)
+        XCTAssertEqual("13982 W. Waddell null null", responseResult?.formattedAddress)
         XCTAssertEqual(.store, responseResult?.api)
     }
 }

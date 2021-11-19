@@ -56,7 +56,7 @@ class AddressProviderTest: XCTestCase {
 
         let promise = expectation(description: "Should return result ")
         // when
-        testObject.details("UGFyaXMsIMOObGUtZGUtRnJhbmNlLCBGcmFuY2U=") { (result, error) in
+        testObject.details("aGVyZTpjbTpuYW1lZHBsYWNlOjIwMDAyMTI4") { (result, error) in
             responseResult = result
             responseError = error
             promise.fulfill()
