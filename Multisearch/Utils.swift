@@ -52,6 +52,9 @@ internal class Utils {
             if let extended = param.extended {
                 urlQuery.append(URLQueryItem.init(name: "extended", value: extended))
             }
+            if let fields = param.fields {
+                urlQuery.append(URLQueryItem.init(name: "fields", value: fields))
+            }
         }
 
         return urlQuery
@@ -59,22 +62,6 @@ internal class Utils {
 }
 
 extension String {
-
-    /// Base64 encrypted string to common readable string
-    /// - Returns: String in readable format
-    func fromBase64() -> String? {
-        guard let data = Data(base64Encoded: self) else {
-            return nil
-        }
-
-        return String(data: data, encoding: .utf8)
-    }
-
-    /// Encode a human readable string to base64 format
-    /// - Returns: Encrypted string
-    func toBase64() -> String {
-        return Data(self.utf8).base64EncodedString()
-    }
 
     var length: Int { return self.count }
 

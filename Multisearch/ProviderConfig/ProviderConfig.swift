@@ -53,6 +53,12 @@ public class ConfigParam: Codable {
     ///
     /// If set, this parameter allows a refined search over locality names that bears the same postal code. By triggering this parameter, integrators will benefit from a search spectrum on the locality type that includes postal codes. To avoid confusion, it is recommended not to activate this parameter along with the postal_code type which could lead to duplicate locations. Also, the default description returned by the API changes to name (postal code), admin_1, admin_0. It is only available for France and Italy.
     var extended: String?
+    
+    /// Can be set to ‘geometry’ to limit content of responses to the geometry part. No address component provided.
+    ///
+    /// You can use this parameter to limit the returning fields (by default, all fields are return). Available fields are (geometry) (fields should be separated by a ,).
+    /// By using this parameter you will limit content of responses to the geometry part. No address component provided.
+    var fields: String?
 
     /// Creating ConfigParam with component
     /// - Parameter components: components
@@ -69,13 +75,18 @@ public class ConfigParam: Codable {
         self.types = types
     }
 
-    /// Creating ConfigParam with components, types, tags, language
+    /// Creating ConfigParam with components, types, tags, language, query, data, extended, fields
     /// - Parameters:
     ///   - components: component query
     ///   - types: types query
     ///   - tags: tags query
     ///   - language: language query
-    public init(components: Components? = nil, types: [String]? = nil, language: String? = nil, query: String? = nil, data: DataFormat? = nil, extended: String? = nil  ) {
+    ///   - query: custom query
+    ///   - data: data query
+    ///   - extended: extended query
+    ///   - fields: fields query
+    ///
+    public init(components: Components? = nil, types: [String]? = nil, language: String? = nil, query: String? = nil, data: DataFormat? = nil, extended: String? = nil, fields: String? = nil) {
         self.components = components
         self.types = types
         self.language = language
@@ -86,6 +97,7 @@ public class ConfigParam: Codable {
             self.data = tempData.rawValue
         }
         self.extended = extended
+        self.fields = fields
     }
 }
 

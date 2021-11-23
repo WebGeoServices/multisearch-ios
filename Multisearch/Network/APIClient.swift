@@ -365,9 +365,7 @@ class APIClient: APIClientProtocol {
                         if let poiInfo = value["predictions"] as? [[String: Any]] {
                             poiInfo.forEach { (poiItem) in
                                 if let description = poiItem["description"] as? String {
-                                    var modifiedPOI = poiItem
-                                    modifiedPOI["public_id"] = description.toBase64()
-                                    result.append(AutocompleteResponseItem.init(description: description, searchtype: .address, input: modifiedPOI))
+                                    result.append(AutocompleteResponseItem.init(description: description, searchtype: .address, input: poiItem))
                                 }
                             }
                         } else {
@@ -426,8 +424,11 @@ class APIClient: APIClientProtocol {
                 do {
                     let jsonStructure = try JSONDecoder().decode(JSONAny.self, from: data)
                     if let value = jsonStructure.value as? [String: Any] {
-                        if let results = value["results"] as? [[String: Any]] {
-                            if let poiInfo = results.first {
+                        if let poiInfo = value["result"] as? [String: Any] {
+                                guard let publicID = poiInfo["public_id"] as? String else {
+                                    completionBlock( nil, .serialization(Constants.formatNotMatching))
+                                    return
+                                }
                                 guard let formattedAddress = poiInfo["formatted_address"] as? String else {
                                     completionBlock( nil, .serialization(Constants.formatNotMatching))
                                     return
@@ -437,15 +438,13 @@ class APIClient: APIClientProtocol {
                                     types = poitypes
                                 }
                                 let result = DetailsResponseItem.init(api: .address,
-                                                                      id: formattedAddress.toBase64(),
+                                                                      id: publicID,
                                                                       formattedAddress: formattedAddress,
                                                                       name: formattedAddress,
                                                                       types: types,
                                                                       input: poiInfo)
                                 completionBlock( result, nil)
-                            } else {
-                                completionBlock( nil, .serialization(Constants.invalidRequest))
-                            }
+
                         } else {
                             if let errorMsg = value["error_message"] as? String {
                                 completionBlock( nil, .http(message: errorMsg, statusText: Constants.badRequest, status: 400))

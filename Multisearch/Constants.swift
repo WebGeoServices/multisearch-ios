@@ -13,7 +13,7 @@ internal class Constants {
     static let URLLocalitiesAPI = "/localities/autocomplete/"
     static let URLLocalitiesDetailAPI = "/localities/details/"
     static let URLAddressAPI = "/address/autocomplete/json"
-    static let URLAddressDetailAPI = "/address/geocode/json"
+    static let URLAddressDetailAPI = "/address/details/json"
     static let URLStoreAPI = "/stores/autocomplete/"
     static let URLStoreDetailAPI = "/stores/search/"
     static let URLPlacesAPI = "/maps/api/place/autocomplete/json"

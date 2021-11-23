@@ -32,35 +32,10 @@ class UtilsTests: XCTestCase {
         // when
         let test: [URLQueryItem] = Utils.formatQuery(apikey: "key 123", configParam: localitiesProvider.param)
         // then
-        XCTAssertEqual(4, test.count, "No Matching record counts")
+        XCTAssertEqual(3, test.count, "No Matching record counts")
         XCTAssertEqual(test[0].value, "key 123", "Not matching value of key")
         XCTAssertEqual(test[1].value, "country:FR|country:IN", "Not matching value of key")
         XCTAssertEqual(test[2].value, "locality|country|postal_code", "Not matching value of key")
-    }
-
-    func testStringEncoding() throws {
-        // given
-        let testdata = "testdata"
-
-        // when
-        let test: String = testdata.toBase64()
-
-        // then
-        XCTAssertEqual(test, "dGVzdGRhdGE=", "Not matching encoding")
-
-    }
-    func testStringDecoding() throws {
-        // given
-        let testdata = "testdata"
-
-        // when
-        let test: String = testdata.toBase64()
-        let testdecodeback: String? = test.fromBase64()
-
-        // then
-        XCTAssertEqual(test, "dGVzdGRhdGE=", "Not matching encoding")
-        XCTAssertEqual(testdecodeback, "testdata", "Not matching encoding")
-
     }
 
     func testDebouncer() throws {

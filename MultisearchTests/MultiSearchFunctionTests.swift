@@ -66,7 +66,7 @@ class MultiSearchFunctionTests: XCTestCase {
         // then
         XCTAssertNil(responseError, "function should not return errors")
         XCTAssertEqual(5, responseResult?.count, "No Matching record counts")
-        XCTAssertEqual("23 Rue de Breteuil, 27160 Mesnils-sur-Iton, France", responseResult?.first?.description, "No Matching Details of result")
+        XCTAssertEqual("23 Rue Delizy, 93500 Pantin, France", responseResult?.first?.description, "No Matching Details of result")
 
         let recordLocalities = responseResult?.firstIndex(where: { (item) -> Bool in
             return item.api == .localities
@@ -200,7 +200,7 @@ class MultiSearchFunctionTests: XCTestCase {
         // then
         XCTAssertNil(responseError, "function should not return errors")
         XCTAssertEqual(5, responseResult?.count, "No Matching record counts")
-        XCTAssertEqual("Disneyland Hotel, Rue de la Marnière, Chessy, France", responseResult?.first?.description, "No Matching Details of result")
+        XCTAssertEqual("Disneyland Paris, Boulevard de Parc, Coupvray, France", responseResult?.first?.description, "No Matching Details of result")
 
         let recordLocalities = responseResult?.firstIndex(where: { (item) -> Bool in
             return item.api == .localities
@@ -342,8 +342,8 @@ class MultiSearchFunctionTests: XCTestCase {
 
         // then
         XCTAssertNil(responseError, "function should not return errors")
-        XCTAssertEqual(6, responseResult?.count, "No Matching record counts")
-        XCTAssertEqual("SHEFFIELD MEADOWHALL", responseResult?.first?.description, "No Matching Details of result")
+        XCTAssertEqual(5, responseResult?.count, "No Matching record counts")
+        XCTAssertEqual("Sheffield, South Yorkshire, United Kingdom", responseResult?.first?.description, "No Matching Details of result")
 
         let recordLocalities = responseResult?.firstIndex(where: { (item) -> Bool in
             return item.api == .localities
@@ -353,7 +353,7 @@ class MultiSearchFunctionTests: XCTestCase {
         let recordStore = responseResult?.firstIndex(where: { (item) -> Bool in
             return item.api == .store
         })
-        XCTAssertNotNil(recordStore, "As per config store record should be fetch")
+        XCTAssertNil(recordStore, "As per config store record should be fetch")
 
         let recordAddress = responseResult?.firstIndex(where: { (item) -> Bool in
             return item.api == .address
@@ -484,8 +484,8 @@ class MultiSearchFunctionTests: XCTestCase {
 
         // then
         XCTAssertNil(responseError, "function should not return errors")
-        XCTAssertEqual(6, responseResult?.count, "No Matching record counts")
-        XCTAssertEqual("Shefford, Central Bedfordshire, United Kingdom", responseResult?.first?.description, "No Matching Details of result")
+        XCTAssertEqual(5, responseResult?.count, "No Matching record counts")
+        XCTAssertEqual("Sheffield, South Yorkshire, United Kingdom", responseResult?.first?.description, "No Matching Details of result")
 
         let recordLocalities = responseResult?.firstIndex(where: { (item) -> Bool in
             return item.api == .localities
@@ -495,7 +495,7 @@ class MultiSearchFunctionTests: XCTestCase {
         let recordStore = responseResult?.firstIndex(where: { (item) -> Bool in
             return item.api == .store
         })
-        XCTAssertNotNil(recordStore, "As per config store record should be fetch")
+        XCTAssertNil(recordStore, "As per config store record should be fetch")
 
         let recordAddress = responseResult?.firstIndex(where: { (item) -> Bool in
             return item.api == .address
@@ -824,7 +824,7 @@ class MultiSearchFunctionTests: XCTestCase {
         // then
         XCTAssertNil(responseError, "function should not return errors")
         XCTAssertEqual(5, responseResult?.count, "No Matching record counts")
-        XCTAssertEqual("Gare Lille Flandres, Lille, France", responseResult?.first?.description, "No Matching Details of result")
+        XCTAssertEqual("Gare d'Austerlitz, Paris, France", responseResult?.first?.description, "No Matching Details of result")
 
         let recordLocalities = responseResult?.firstIndex(where: { (item) -> Bool in
             return item.api == .localities
@@ -866,7 +866,7 @@ class MultiSearchFunctionTests: XCTestCase {
 
         let promise = expectation(description: "Should return result")
         // when
-        testObject.autocompleteMulti(input: "KT80AE") { (result, error) in
+        testObject.autocompleteMulti(input: "KT8 0AE Su") { (result, error) in
             responseResult = result
             responseError = error
             promise.fulfill()
@@ -876,7 +876,7 @@ class MultiSearchFunctionTests: XCTestCase {
 
         // then
         XCTAssertNil(responseError, "function should not return errors")
-        XCTAssertEqual(1, responseResult?.count, "No Matching record counts")
+        XCTAssertEqual(5, responseResult?.count, "No Matching record counts")
         XCTAssertEqual("KT8 0AE, Surrey, United Kingdom", responseResult?.first?.description, "No Matching Details of result")
 
         let recordLocalities = responseResult?.firstIndex(where: { (item) -> Bool in
@@ -1546,7 +1546,7 @@ class MultiSearchFunctionTests: XCTestCase {
         // then
         XCTAssertNil(responseError, "function should not return errors")
         XCTAssertEqual(5, responseResult?.count, "No Matching record counts")
-        XCTAssertEqual("Lille, France", responseResult?.first?.description, "No Matching Details of result")
+        XCTAssertEqual("Liverpool Street Station, London, UK", responseResult?.first?.description, "No Matching Details of result")
 
         let recordLocalities = responseResult?.firstIndex(where: { (item) -> Bool in
             return item.api == .localities
@@ -1628,7 +1628,7 @@ class MultiSearchFunctionTests: XCTestCase {
         let storeProvider: ProviderConfig = ProviderConfig(searchType: .store,
                                                             key: FakeTestData.woosmapKey,
                                                             ignoreFallbackBreakpoint: true,
-                                                            param: ConfigParam(query: "type:bose_factory_store"))
+                                                            param: ConfigParam(query: "type:type1"))
 
         testObject.addProvider(config: storeProvider)
 
@@ -1637,58 +1637,7 @@ class MultiSearchFunctionTests: XCTestCase {
 
         let promise = expectation(description: "Should return result")
         // when
-        testObject.autocompleteMulti(input: "outlet") { (result, error) in
-            responseResult = result
-            responseError = error
-            promise.fulfill()
-        }
-
-        wait(for: [promise], timeout: 5)
-
-        // then
-        XCTAssertNil(responseError, "function should not return errors")
-        XCTAssertEqual(5, responseResult?.count, "No Matching record counts")
-        XCTAssertEqual("OUTLET SWINDON", responseResult?.first?.description, "No Matching Details of result")
-
-        let recordLocalities = responseResult?.firstIndex(where: { (item) -> Bool in
-            return item.api == .localities
-        })
-        XCTAssertNil(recordLocalities, "As per config localities record should not be fetch")
-
-        let recordStore = responseResult?.firstIndex(where: { (item) -> Bool in
-            return item.api == .store
-        })
-        XCTAssertNotNil(recordStore, "As per config store record should be fetch")
-
-        let recordAddress = responseResult?.firstIndex(where: { (item) -> Bool in
-            return item.api == .address
-        })
-        XCTAssertNil(recordAddress, "As per config address record should not be fetch")
-
-        let recordPlace = responseResult?.firstIndex(where: { (item) -> Bool in
-            return item.api == .places
-        })
-        XCTAssertNil(recordPlace, "As per config address record should not be fetch")
-
-    }
-
-    func testautocomplete_Row51() throws {
-        // given
-        let testObject = MultiSearch.init(debounceTime: 100)
-
-        let storeProvider: ProviderConfig = ProviderConfig(searchType: .store,
-                                                            key: FakeTestData.woosmapKey,
-                                                            ignoreFallbackBreakpoint: true,
-                                                            param: ConfigParam(query: "type:bose_factory_store"))
-
-        testObject.addProvider(config: storeProvider)
-
-        var responseError: WoosmapError?
-        var responseResult: [AutocompleteResponseItem]?
-
-        let promise = expectation(description: "Should return result")
-        // when
-        testObject.autocompleteMulti(input: "store") { (result, error) in
+        testObject.autocompleteMulti(input: "vis") { (result, error) in
             responseResult = result
             responseError = error
             promise.fulfill()
@@ -1699,7 +1648,7 @@ class MultiSearchFunctionTests: XCTestCase {
         // then
         XCTAssertNil(responseError, "function should not return errors")
         XCTAssertEqual(1, responseResult?.count, "No Matching record counts")
-        XCTAssertEqual("Woodburn Company Stores", responseResult?.first?.description, "No Matching Details of result")
+        XCTAssertEqual("Vista & Foothill, Vista", responseResult?.first?.description, "No Matching Details of result")
 
         let recordLocalities = responseResult?.firstIndex(where: { (item) -> Bool in
             return item.api == .localities
@@ -1722,6 +1671,8 @@ class MultiSearchFunctionTests: XCTestCase {
         XCTAssertNil(recordPlace, "As per config address record should not be fetch")
 
     }
+
+
     func testautocomplete_Row53() throws {
         // given
         let testObject = MultiSearch.init(debounceTime: 100)
@@ -1755,7 +1706,7 @@ class MultiSearchFunctionTests: XCTestCase {
 
         // then
         XCTAssertNil(responseError, "function should not return errors")
-        XCTAssertEqual(3, responseResult?.count, "No Matching record counts")
+        XCTAssertEqual(2, responseResult?.count, "No Matching record counts")
         XCTAssertEqual("Beijing, 北京市, China", responseResult?.first?.description, "No Matching Details of result")
 
         let recordLocalities = responseResult?.firstIndex(where: { (item) -> Bool in
