@@ -13,7 +13,7 @@ see [adding package dependencies to your app](https://developer.apple.com/docume
 on Apple documentation. The package repository URL is:
 
 ```
-https://github.com/WebGeoServices/multisearch-ios
+https://github.com/Woosmap/multisearch-ios
 ```
 
 ### CocoaPods
@@ -22,7 +22,7 @@ Install [CocoaPods](https://cocoapods.org), a dependency manager for Cocoa proje
  For usage and installation instructions, visit their website. To integrate Woosmap Geofencing SDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```
-pod 'Multisearch', :git => 'https://github.com/WebGeoServices/multisearch-ios'
+pod 'Multisearch', :git => 'https://github.com/Woosmap/multisearch-ios'
 ```
 
 ### Importing the Framework manually
